@@ -1,7 +1,11 @@
-const Header = () => {
+import React from 'react';
+import logo from '../assets/logo.png';
+import '../styles/Header.css';
+
+const Header: React.FC = () => {
   return (
     <header>
-      <h1>ReactQuiz</h1>
+      <img src={logo} alt="logo platform" className='logo' />
     </header>
   );
 };
