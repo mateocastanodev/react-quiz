@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import quizComplete from "../assets/congratulations.png";
 import questionsData from "../questions";
 import QuestionTimer from "./QuestionTimer";
@@ -16,29 +16,48 @@ interface Question {
 }
 
 const Quiz = () => {
+  const [answerState, setAnswerState] = useState("");
   const [userAnswers, setUserAnswers] = useState<string[]>([]);
 
   const activeQuestionIndex = userAnswers.length;
 
   const quizIsComplete = activeQuestionIndex === questions.length;
 
-  const handleSelectAnswer = (selectedAnswer: any) => {
-    setUserAnswers([...userAnswers, selectedAnswer]);
-  };
-  const shuffledAnswers =
-    !quizComplete &&
-    [...questions[activeQuestionIndex].answers].sort(() => Math.random() - 0.5);
+  const handleSelectAnswer = useCallback((selectedAnswer: any) => {
+    setAnswerState(selectedAnswer);
+    setUserAnswers((prevAnswer) => [...prevAnswer, selectedAnswer]);
+    setTimeout(() => {
+      if (selectedAnswer === questions[activeQuestionIndex].answers[0]) {
+        setAnswerState("correct");
+      } else {
+        setAnswerState("wrong");
+      }
+    }, 1000);
+  }, []);
+
+  const handleSkipAnswer = useCallback(() => {
+    handleSelectAnswer(null);
+  }, [handleSelectAnswer]);
+
+  let shuffledAnswers: string[] | undefined;
+
+  if (!quizIsComplete) {
+    shuffledAnswers = [...questions[activeQuestionIndex].answers].sort(
+      () => Math.random() - 0.5
+    );
+  }
 
   return !quizIsComplete ? (
     <div id="quiz">
       <div id="question">
         <QuestionTimer
+          key={activeQuestionIndex}
           timeout={10000}
-          onTimeout={() => handleSelectAnswer(null)}
+          onTimeout={handleSkipAnswer}
         />
         <h2>{questions[activeQuestionIndex].text}</h2>
         <ul id="answers">
-          {questions[activeQuestionIndex].answers.map((el: string) => (
+          {(shuffledAnswers || []).map((el: any) => (
             <li key={el} className="answer">
               <button onClick={() => handleSelectAnswer(el)}>{el}</button>
             </li>
