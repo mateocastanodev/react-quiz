@@ -14,17 +14,20 @@ export default function Question({
   onSelectAnswer,
   onSkipAnswer,
 }: QuestionProps) {
-  const [answer, setAnswer] = useState({
+  const [answer, setAnswer] = useState<{
+    selectedAnswer: string;
+    isCorrect: boolean | null;
+  }>({
     selectedAnswer: "",
-    isCorrect: false,
+    isCorrect: null,
   });
 
   function handleSelectAnswer(answersSelected: string) {
-    setAnswer({ selectedAnswer: answersSelected, isCorrect: false });
+    setAnswer({ selectedAnswer: answersSelected, isCorrect: null });
     setTimeout(() => {
       setAnswer({
-        selectedAnswer: answer.selectedAnswer,
-        isCorrect: questionsData[questionIndex].answers[0] === answersSelected,
+        selectedAnswer: answersSelected,
+        isCorrect: answersSelected === questionsData[questionIndex].answers[0],
       });
 
       setTimeout(() => {
@@ -32,16 +35,15 @@ export default function Question({
       }, 2000);
     }, 1000);
   }
-
   let answerState: string = "";
-  if (answer.selectedAnswer && answer.isCorrect !== undefined) {
+  if (answer.selectedAnswer && answer.isCorrect !== null) {
     answerState = answer.isCorrect ? "correct" : "wrong";
   } else if (answer.selectedAnswer) {
     answerState = "answered";
   }
   return (
     <div id="question">
-      <QuestionTimer timeout={10000} onTimeout={onSkipAnswer} />
+      <QuestionTimer timeout={80000} onTimeout={onSkipAnswer} />
       <h2>{questionsData[questionIndex].text}</h2>
       <Answers
         answers={questionsData[questionIndex].answers}

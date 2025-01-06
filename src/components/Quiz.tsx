@@ -14,7 +14,6 @@ const Quiz = () => {
   const [userAnswers, setUserAnswers] = useState<string[]>([]);
 
   const activeQuestionIndex = userAnswers.length;
-  console.log(activeQuestionIndex);
 
   const quizIsComplete = activeQuestionIndex === questions.length;
 

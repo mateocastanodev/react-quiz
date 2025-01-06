@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useMemo } from "react";
 
 interface AnswersProps {
   answers: string[];
@@ -13,13 +13,13 @@ export default function Answers({
   answerState,
   onSelect,
 }: AnswersProps) {
-  const shuffledAnswers = useRef<string[]>();
-  if (!shuffledAnswers.current) {
-    shuffledAnswers.current = [...answers].sort(() => Math.random() - 0.5);
-  }
+  const shuffledAnswers = useMemo(() => {
+    return [...answers].sort(() => Math.random() - 0.5);
+  }, [answers]);
+
   return (
     <ul id="answers">
-      {shuffledAnswers.current.map((el: string) => {
+      {shuffledAnswers.map((el: string) => {
         let cssClass = "";
         const isSelected = selectedAnswer === el;
         if (answerState === "answered" && isSelected) cssClass = "selected";
