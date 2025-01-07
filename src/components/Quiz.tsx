@@ -19,6 +19,7 @@ const Quiz = () => {
 
   const handleSelectAnswer = useCallback((selectedAnswer: any) => {
     setUserAnswers((prevAnswers) => [...prevAnswers, selectedAnswer]);
+    console.log(userAnswers);
   }, []);
 
   const handleSkipAnswer = useCallback(() => {

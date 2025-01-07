@@ -41,6 +41,7 @@ export default function Question({
   } else if (answer.selectedAnswer) {
     answerState = "answered";
   }
+
   return (
     <div id="question">
       <QuestionTimer timeout={80000} onTimeout={onSkipAnswer} />
