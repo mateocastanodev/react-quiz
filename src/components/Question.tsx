@@ -31,6 +31,8 @@ export default function Question({
       });
 
       setTimeout(() => {
+        console.log("selectedAnswer", answersSelected);
+        console.log(onSelectAnswer);
         onSelectAnswer(answersSelected);
       }, 2000);
     }, 1000);
