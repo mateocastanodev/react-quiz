@@ -9,10 +9,12 @@ const Summary = ({ userAnswers }: Summary) => {
     (answer, index) => answer === questionsData[index].answers[0]
   );
 
-  const skippedAnswersShare =
-    Math.round(skippedAnswers.length / userAnswers.length) * 100;
-  const correctAnswersShare =
-    Math.round(correctAnswers.length / userAnswers.length) * 100;
+  const skippedAnswersShare = Math.round(
+    (skippedAnswers.length / userAnswers.length) * 100
+  );
+  const correctAnswersShare = Math.round(
+    (correctAnswers.length / userAnswers.length) * 100
+  );
   const wrongAnswersShare = 100 - skippedAnswersShare - correctAnswersShare;
   return (
     <div id="summary">
