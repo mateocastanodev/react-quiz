@@ -14,8 +14,12 @@ export default function QuestionTimer({
   const [remainingTime, setRemainingTime] = React.useState(timeout);
 
   useEffect(() => {
-    const timer = setTimeout(onTimeout, timeout);
-    return () => clearTimeout(timer);
+    const timer = onTimeout ? setTimeout(onTimeout, timeout) : undefined;
+    return () => {
+      if (timer !== undefined) {
+        clearTimeout(timer);
+      }
+    };
   }, [timeout, onTimeout]);
 
   useEffect(() => {

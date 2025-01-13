@@ -1,9 +1,7 @@
-import { useState } from 'react'
-import Header from './components/Header'
-import Quiz from './components/Quiz'
+import Header from "./components/Header";
+import Quiz from "./components/Quiz";
 
 function App() {
-
   return (
     <>
       <Header />
@@ -11,7 +9,7 @@ function App() {
         <Quiz />
       </main>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
