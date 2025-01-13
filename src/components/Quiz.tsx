@@ -1,8 +1,7 @@
 import { useCallback, useState } from "react";
-import quizComplete from "../assets/congratulations.png";
 import questionsData from "../questions";
 import Question from "./Question";
-
+import Summary from "./Summary";
 interface Question {
   text: string;
   answers: string[];
@@ -26,12 +25,7 @@ const Quiz = () => {
   }, [handleSelectAnswer]);
 
   if (quizIsComplete) {
-    return (
-      <div id="summary">
-        <img src={quizComplete} alt="Trophy icon" />
-        <h2>Quiz completed!</h2>
-      </div>
-    );
+    return <Summary userAnswers={userAnswers} />;
   }
 
   return (
