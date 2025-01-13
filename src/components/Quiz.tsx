@@ -11,7 +11,6 @@ const questions: Question[] = questionsData;
 
 const Quiz = () => {
   const [userAnswers, setUserAnswers] = useState<string[]>([]);
-  console.log(userAnswers);
 
   const activeQuestionIndex = userAnswers.length;
 
