@@ -7,6 +7,7 @@ interface QuestionProps {
   questionIndex: number;
   onSelectAnswer: (selectedAnswer: string) => void;
   onSkipAnswer: () => void;
+  key: number;
 }
 
 export default function Question({
@@ -22,6 +23,12 @@ export default function Question({
     isCorrect: null,
   });
 
+  let timer = 10000;
+
+  if (answer.selectedAnswer) timer = 1000;
+
+  if (answer.isCorrect !== null) timer = 2000;
+
   function handleSelectAnswer(answersSelected: string) {
     setAnswer({ selectedAnswer: answersSelected, isCorrect: null });
     setTimeout(() => {
@@ -31,8 +38,6 @@ export default function Question({
       });
 
       setTimeout(() => {
-        console.log("selectedAnswer", answersSelected);
-        console.log(onSelectAnswer);
         onSelectAnswer(answersSelected);
       }, 2000);
     }, 1000);
@@ -46,7 +51,12 @@ export default function Question({
 
   return (
     <div id="question">
-      <QuestionTimer timeout={80000} onTimeout={onSkipAnswer} />
+      <QuestionTimer
+        timeout={timer}
+        onTimeout={answer.selectedAnswer === "" ? onSkipAnswer : null}
+        mode={answerState}
+        key={timer}
+      />
       <h2>{questionsData[questionIndex].text}</h2>
       <Answers
         answers={questionsData[questionIndex].answers}
