@@ -288,3 +288,72 @@ header h1 {
 .menu button {
   margin: 0 1rem;
 }
+
+.code-live-container {
+  max-width: 50rem;
+  margin: auto;
+  padding: 2rem;
+  background-color: #0F3460;
+  border-radius: 8px;
+  box-shadow: 1px 1px 8px 4px rgba(0, 0, 0, 0.4);
+  text-align: center;
+}
+
+.code-live-container h2 {
+  color: #E94560;
+  margin-bottom: 1rem;
+}
+
+.code-live-container p {
+  color: #FFFFFF;
+  margin-bottom: 2rem;
+}
+
+.editor-wrapper {
+  border: 1px solid #E94560;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.run-button {
+  background-color: #E94560;
+  color: #FFFFFF;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-top: 1rem;
+}
+
+.run-button:hover {
+  background-color: #FF4500;
+}
+
+.output-wrapper {
+  margin-top: 2rem;
+  text-align: left;
+  background-color: #1A1A2E;
+  padding: 1rem;
+  border-radius: 5px;
+  border: 1px solid #0F3460;
+}
+
+.output-wrapper h3 {
+  color: #E94560;
+  margin-top: 0;
+}
+
+.code-output {
+  white-space: pre-wrap;
+  word-break: break-all;
+  color: #FFFFFF;
+}
+
+.code-live-controls {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
