@@ -5,8 +5,10 @@ import 'prismjs/components/prism-javascript';
 import 'prismjs/themes/prism.css';
 import { codeExercises } from '../code-exercises';
 import Button from "@mui/material/Button";
+import { useTranslation } from 'react-i18next';
 
 const CodeLive = () => {
+  const { t } = useTranslation();
   const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0);
   const [code, setCode] = useState(codeExercises[0].initialCode);
   const [output, setOutput] = useState<string>('');
@@ -45,7 +47,7 @@ const CodeLive = () => {
 
   return (
     <div className="code-live-container">
-      <h2>{currentExercise.title}</h2>
+      <h2>{t('code_live_editor')}</h2>
       <p>{currentExercise.description}</p>
       <div className="editor-wrapper">
         <Editor
@@ -64,12 +66,12 @@ const CodeLive = () => {
         />
       </div>
       <div className="code-live-controls">
-        <Button onClick={runCode} variant="contained">Run Code</Button>
-        <Button onClick={handlePreviousExercise} disabled={currentExerciseIndex === 0} variant="contained">Previous</Button>
-        <Button onClick={handleNextExercise} disabled={currentExerciseIndex === codeExercises.length - 1} variant="contained">Next</Button>
+        <Button onClick={runCode} variant="contained">{t('run_code')}</Button>
+        <Button onClick={handlePreviousExercise} disabled={currentExerciseIndex === 0} variant="contained">{t('previous')}</Button>
+        <Button onClick={handleNextExercise} disabled={currentExerciseIndex === codeExercises.length - 1} variant="contained">{t('next')}</Button>
       </div>
       <div className="output-wrapper">
-        <h3>Output:</h3>
+        <h3>{t('output')}</h3>
         <pre className="code-output">{output}</pre>
       </div>
     </div>

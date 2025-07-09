@@ -1,12 +1,13 @@
 import { useState } from "react";
 import Answers from "./Answers";
 import QuestionTimer from "./QuestionTimer";
+import { useTranslation } from 'react-i18next';
 
 interface QuestionProps {
   questionIndex: number;
   onSelectAnswer: (selectedAnswer: string) => void;
   onSkipAnswer: () => void;
-  questions: { text: string; answers: string[] }[];
+  questions: { id: string; text: string; answers: string[] }[];
 }
 
 export default function Question({
@@ -15,6 +16,7 @@ export default function Question({
   onSkipAnswer,
   questions,
 }: QuestionProps) {
+  const { t } = useTranslation();
   const [answer, setAnswer] = useState<{
     selectedAnswer: string;
     isCorrect: boolean | null;
@@ -34,7 +36,7 @@ export default function Question({
     setTimeout(() => {
       setAnswer({
         selectedAnswer: answersSelected,
-        isCorrect: answersSelected === questions[questionIndex].answers[0],
+        isCorrect: answersSelected === t(questions[questionIndex].answers[0]),
       });
 
       setTimeout(() => {
@@ -57,9 +59,9 @@ export default function Question({
         mode={answerState}
         key={timer}
       />
-      <h2>{questions[questionIndex].text}</h2>
+      <h2>{t(questions[questionIndex].text)}</h2>
       <Answers
-        answers={questions[questionIndex].answers}
+        answers={questions[questionIndex].answers.map(key => t(key))}
         selectedAnswer={answer.selectedAnswer}
         answerState={answerState}
         onSelect={handleSelectAnswer}
