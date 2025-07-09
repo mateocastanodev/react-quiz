@@ -8,7 +8,7 @@ export const codeExercises = [
 
 function removeDuplicates(arr) {
   // Write your code here
-  return ;
+  return;
 }
 
 console.log(removeDuplicates(letters));`,
