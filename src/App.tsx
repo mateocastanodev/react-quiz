@@ -25,7 +25,7 @@ function App() {
   if (appMode === "menu") {
     content = <Menu onSelectDifficulty={handleSelectDifficulty} onSelectMode={handleSelectMode} />;
   } else if (appMode === "quiz") {
-    content = <Quiz questions={questions[difficulty!]} />;
+    content = <Quiz questions={questions[difficulty as "beginner" | "intermediate" | "advanced"]} />;
   } else if (appMode === "code-live") {
     content = <CodeLive />;
   }
