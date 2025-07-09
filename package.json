@@ -2,6 +2,7 @@
   "name": "react-from-scratch",
   "private": true,
   "version": "0.0.0",
+  "homepage": "https://mateocastanodev.github.io/react-quiz",
   "type": "module",
   "scripts": {
     "dev": "vite",
