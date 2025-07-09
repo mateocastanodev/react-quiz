@@ -1,10 +1,12 @@
 import React from "react";
-import logo from "../assets/logo.png";
 
 const Header: React.FC = () => {
   return (
     <header>
-      <img src={logo} alt="logo platform" className="logo" />
+      <div className="logo-container">
+        <h1 className="logo-text">Q</h1>
+      </div>
+      <h1>ReactQuiz</h1>
     </header>
   );
 };

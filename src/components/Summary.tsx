@@ -1,12 +1,14 @@
 import quizComplete from "../assets/congratulations.png";
-import questionsData from "../questions";
-interface Summary {
+
+interface SummaryProps {
   userAnswers: string[];
+  questions: { text: string; answers: string[] }[];
 }
-const Summary = ({ userAnswers }: Summary) => {
+
+const Summary = ({ userAnswers, questions }: SummaryProps) => {
   const skippedAnswers = userAnswers.filter((answer) => answer === null);
   const correctAnswers = userAnswers.filter(
-    (answer, index) => answer === questionsData[index].answers[0]
+    (answer, index) => answer === questions[index].answers[0]
   );
 
   const skippedAnswersShare = Math.round(
@@ -39,7 +41,7 @@ const Summary = ({ userAnswers }: Summary) => {
           let cssClass = "user-answer";
           if (answer === null) {
             cssClass += " skipped";
-          } else if (answer === questionsData[index].answers[0]) {
+          } else if (answer === questions[index].answers[0]) {
             cssClass += " correct";
           } else {
             cssClass += " wrong";
@@ -47,7 +49,7 @@ const Summary = ({ userAnswers }: Summary) => {
           return (
             <li key={index}>
               <h3>{index + 1}</h3>
-              <p className="question">{questionsData[index].text}</p>
+              <p className="question">{questions[index].text}</p>
               <p className={cssClass}>{answer ?? "Skipped"}</p>
             </li>
           );

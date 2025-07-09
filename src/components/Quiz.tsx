@@ -1,15 +1,12 @@
 import { useCallback, useState } from "react";
-import questionsData from "../questions";
 import Question from "./Question";
 import Summary from "./Summary";
-interface Question {
-  text: string;
-  answers: string[];
+
+interface QuizProps {
+  questions: { id: string; text: string; answers: string[] }[];
 }
 
-const questions: Question[] = questionsData;
-
-const Quiz = () => {
+const Quiz = ({ questions }: QuizProps) => {
   const [userAnswers, setUserAnswers] = useState<string[]>([]);
 
   const activeQuestionIndex = userAnswers.length;
@@ -25,7 +22,7 @@ const Quiz = () => {
   }, [handleSelectAnswer]);
 
   if (quizIsComplete) {
-    return <Summary userAnswers={userAnswers} />;
+    return <Summary userAnswers={userAnswers} questions={questions} />;
   }
 
   return (
@@ -35,6 +32,7 @@ const Quiz = () => {
         questionIndex={activeQuestionIndex}
         onSelectAnswer={handleSelectAnswer}
         onSkipAnswer={handleSkipAnswer}
+        questions={questions}
       />
     </div>
   );
