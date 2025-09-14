@@ -204,7 +204,6 @@ To suppress this warning, you need to explicitly provide the \`palette.${s}Chann
 
 function removeDuplicates(arr) {
   // Write your code here
-  return [...new Set(arr)];
 }
 
 console.log(removeDuplicates(letters));`,expectedOutput:`A,B,C,D
@@ -215,7 +214,7 @@ console.log(removeDuplicates(letters));`,expectedOutput:`A,B,C,D
   },
 };
 
-let callName = cat.callName.bind(cat);
+let callName = cat.callName(cat);
 callName();`,expectedOutput:`meou
 `},{id:"ex3",title:"Exercise 3: Class Instantiation and Methods",description:"Given the `Person` class, create two instances of the class with different names and ages, and then call the `sayHello` method on each instance.",initialCode:`// Define a class called 'Person'
 class Person {
