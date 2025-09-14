@@ -10,7 +10,6 @@ export const codeExercises = [
 
 function removeDuplicates(arr) {
   // Write your code here
-  return [...new Set(arr)];
 }
 
 console.log(removeDuplicates(letters));`,
@@ -29,7 +28,7 @@ console.log(removeDuplicates(letters));`,
   },
 };
 
-let callName = cat.callName.bind(cat);
+let callName = cat.callName(cat);
 callName();`,
     expectedOutput: "meou\n",
   },
